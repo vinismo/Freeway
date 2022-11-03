@@ -2,7 +2,7 @@
 
 let xCarros = [300, 200, 600, 400, 100, 500];
 let yCarros = [40, 96, 150, 210, 262, 317];
-let velocidadeCarros = [2.0, 3.7, 3.0, 4.4, 2.3, 3.3];
+let velocidadeCarros = [2.0, 3.7, 3.0, -4.4, -2.3, -3.3];
 let comprimentoCarro = 50;
 let larguraCarro = 40;
 
@@ -20,12 +20,21 @@ function movimentaCarro(){
 
 function voltaPosicaoInicial(){
   for (let i = 0; i < imagemCarros.length; ++i){
-    if (passouTodaATela(xCarros[i])){
-      xCarros[i] = 600;
+    if (passouTodaATelaD(xCarros[i])){
+        xCarros[i] = 600;
+    }
+    if (passouTodaATelaE(xCarros[i])){
+        xCarros[i] = -30;
     }
   }
 }
 
-function passouTodaATela(xCarro){
+function passouTodaATelaD(xCarro){
   return xCarro < - 50;
 }
+
+function passouTodaATelaE(xCarro){
+  return xCarro > 600;
+}
+
+

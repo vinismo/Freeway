@@ -14,22 +14,29 @@ function movimentaAtor(){
     yAtor -= 3;
   }
   if (keyIsDown(DOWN_ARROW)){
-    yAtor += 3;
+    if (podeSeMoverBaixo()){
+      yAtor += 3;
+    }
   }
   if (keyIsDown(RIGHT_ARROW)){
-    xAtor += 3;
+    if (podeSeMoverLadoD()){
+      xAtor += 3;
+    }
   }
   if (keyIsDown(LEFT_ARROW)){
-    xAtor -= 3;
+    if (podeSeMoverLadoE()) {
+      xAtor -= 3;
+    }
   }
 }
 
 //collideRectCircle(x1, y1, width1, height1, cx, cy, diameter)
 function verificaColisao() {
   for (let i = 0; i < imagemCarros.length; i++){
-    colisao = collideRectCircle(xCarros[i], yCarros[i], comprimentoCarro, larguraCarro, xAtor, yAtor, 15)
+    colisao = collideRectCircle(xCarros[i], yCarros[i], 10, 10, xAtor, yAtor, 20)
     if (colisao){
       voltaAtorParaPosicaoInicial();
+      somColisao.play();
       meusPontos = 0;
     }
   }
@@ -50,5 +57,18 @@ function marcaPonto() {
   if (yAtor < 15) {
     meusPontos += 1;
     voltaAtorParaPosicaoInicial();
+    somPonto.play();
   }
+}
+
+function podeSeMoverBaixo(){
+  return yAtor < 366;
+}
+
+function podeSeMoverLadoD(){
+  return xAtor < 565;
+}
+
+function podeSeMoverLadoE(){
+  return xAtor > 3;
 }
